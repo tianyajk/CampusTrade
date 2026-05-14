@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dotnet --version)",
+      "Bash(git -C \"/Users/wangjane/Desktop/CampusTrade\" status --short)",
+      "Bash(dotnet restore *)",
+      "Bash(dotnet build *)",
+      "Bash(dotnet ef *)"
+    ]
+  }
+}

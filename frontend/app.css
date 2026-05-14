@@ -1,0 +1,70 @@
+:root {
+  --campus-green: #198754;
+  --campus-bg: #f6fbf7;
+  --campus-border: #e5efe8;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--campus-bg);
+}
+
+.hero-card,
+.auth-card,
+.profile-card {
+  background: #ffffff;
+  border: 1px solid var(--campus-border);
+  border-radius: 1.25rem;
+  box-shadow: 0 1rem 2.5rem rgba(25, 135, 84, 0.08);
+}
+
+.hero-card {
+  padding: 3rem;
+}
+
+.auth-card {
+  max-width: 460px;
+  padding: 2rem;
+}
+
+.profile-card {
+  padding: 1.5rem;
+}
+
+.form-message {
+  min-height: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.avatar-preview {
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #e9f7ef;
+  background: #f8f9fa;
+}
+
+.product-summary-card {
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid var(--campus-border);
+  border-radius: 1rem;
+  box-shadow: 0 0.75rem 1.5rem rgba(25, 135, 84, 0.06);
+}
+
+.product-summary-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  background: #f8f9fa;
+}
+
+.empty-state {
+  padding: 2rem;
+  color: #6c757d;
+  text-align: center;
+  background: #ffffff;
+  border: 1px dashed var(--campus-border);
+  border-radius: 1rem;
+}

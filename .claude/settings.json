@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:5188/pages/login.html)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:5188/pages/profile.html)",
+      "Bash(curl -s -X POST http://localhost:5188/api/auth/register -H 'Content-Type: application/json' -d '{\"username\":\"testuser\",\"password\":\"123456\",\"email\":\"testuser@example.com\",\"phone\":\"13800000000\"}')",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:5188/pages/index.html)"
+    ]
+  }
+}
