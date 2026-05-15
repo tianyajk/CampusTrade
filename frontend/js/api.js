@@ -1,5 +1,7 @@
 async function authFetch(url, options = {}) {
   const headers = new Headers(options.headers || {});
+  const redirectOnUnauthorized = options.redirectOnUnauthorized ?? true;
+  delete options.redirectOnUnauthorized;
 
   if (options.body && !(options.body instanceof FormData) && !headers.has('Content-Type')) {
     headers.set('Content-Type', 'application/json');
@@ -8,10 +10,10 @@ async function authFetch(url, options = {}) {
   const response = await fetch(url, {
     ...options,
     headers,
-    credentials: 'same-origin' // 自动带上 Cookie
+    credentials: 'same-origin'
   });
 
-  if (response.status === 401) {
+  if (response.status === 401 && redirectOnUnauthorized) {
     if (!location.pathname.endsWith('/login.html')) {
       location.href = '/pages/login.html';
     }
@@ -35,7 +37,7 @@ async function requestJson(url, options = {}) {
 
 async function checkAuth() {
   try {
-    const result = await requestJson('/api/user/profile');
+    const result = await requestJson('/api/user/profile', { redirectOnUnauthorized: false });
     return result.data;
   } catch {
     return null;
