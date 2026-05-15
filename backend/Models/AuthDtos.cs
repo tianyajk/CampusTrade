@@ -33,12 +33,3 @@ public class LoginRequest
     [StringLength(100)]
     public string Password { get; set; } = string.Empty;
 }
-
-public class AuthResponse
-{
-    public string Token { get; set; } = string.Empty;
-
-    public DateTime ExpiresAt { get; set; }
-
-    public UserDto User { get; set; } = new();
-}

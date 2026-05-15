@@ -1,11 +1,14 @@
 {
   "permissions": {
     "allow": [
-      "Bash(dotnet --version)",
-      "Bash(git -C \"/Users/wangjane/Desktop/CampusTrade\" status --short)",
-      "Bash(dotnet restore *)",
-      "Bash(dotnet build *)",
-      "Bash(dotnet ef *)"
-    ]
+      "Bash(dotnet build)",
+      "Bash(mysql -u root -e \"SHOW DATABASES;\")",
+      "Bash(brew services list)",
+      "Bash(mysql --version)",
+      "Bash(sudo mysql -u root -e \"SHOW DATABASES;\")",
+      "Bash(mysql -u root -proot -e \"SHOW DATABASES;\")"
+    ],
+    "deny": [],
+    "ask": []
   }
 }

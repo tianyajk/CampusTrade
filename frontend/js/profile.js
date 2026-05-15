@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', async () => {
-  if (!requireAuth()) return;
+  const user = await requireAuth();
+  if (!user) return;
 
   const profileForm = document.querySelector('#profile-form');
   const avatarForm = document.querySelector('#avatar-form');
@@ -27,7 +28,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         body: JSON.stringify({ username, email, phone: phone || null })
       });
 
-      setStoredUser(result.data);
       renderAuthNav();
       renderProfile(result.data);
       showMessage(message, '个人信息修改成功', true);
@@ -55,9 +55,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         body: formData
       });
 
-      const storedUser = getStoredUser() || {};
-      storedUser.avatar = result.data.avatar;
-      setStoredUser(storedUser);
       document.querySelector('#avatar-preview').src = result.data.avatar;
       showMessage(avatarMessage, '头像上传成功', true);
     } catch (error) {
@@ -68,7 +65,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 async function loadProfile() {
   const result = await requestJson('/api/user/profile');
-  setStoredUser(result.data);
   renderProfile(result.data);
 }
 

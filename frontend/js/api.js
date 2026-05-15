@@ -1,41 +1,5 @@
-const TOKEN_KEY = 'campusTradeToken';
-const USER_KEY = 'campusTradeUser';
-
-function getToken() {
-  return localStorage.getItem(TOKEN_KEY);
-}
-
-function setToken(token) {
-  localStorage.setItem(TOKEN_KEY, token);
-}
-
-function clearToken() {
-  localStorage.removeItem(TOKEN_KEY);
-  localStorage.removeItem(USER_KEY);
-}
-
-function setStoredUser(user) {
-  localStorage.setItem(USER_KEY, JSON.stringify(user));
-}
-
-function getStoredUser() {
-  const raw = localStorage.getItem(USER_KEY);
-  if (!raw) return null;
-
-  try {
-    return JSON.parse(raw);
-  } catch {
-    return null;
-  }
-}
-
 async function authFetch(url, options = {}) {
   const headers = new Headers(options.headers || {});
-  const token = getToken();
-
-  if (token) {
-    headers.set('Authorization', `Bearer ${token}`);
-  }
 
   if (options.body && !(options.body instanceof FormData) && !headers.has('Content-Type')) {
     headers.set('Content-Type', 'application/json');
@@ -43,11 +7,11 @@ async function authFetch(url, options = {}) {
 
   const response = await fetch(url, {
     ...options,
-    headers
+    headers,
+    credentials: 'same-origin' // 自动带上 Cookie
   });
 
   if (response.status === 401) {
-    clearToken();
     if (!location.pathname.endsWith('/login.html')) {
       location.href = '/pages/login.html';
     }
@@ -69,28 +33,39 @@ async function requestJson(url, options = {}) {
   return payload;
 }
 
-function requireAuth() {
-  if (!getToken()) {
-    location.href = '/pages/login.html';
-    return false;
+async function checkAuth() {
+  try {
+    const result = await requestJson('/api/user/profile');
+    return result.data;
+  } catch {
+    return null;
   }
-
-  return true;
 }
 
-function logout() {
-  clearToken();
+async function requireAuth() {
+  const user = await checkAuth();
+  if (!user) {
+    location.href = '/pages/login.html';
+    return null;
+  }
+  return user;
+}
+
+async function logout() {
+  try {
+    await fetch('/api/auth/logout', { method: 'POST', credentials: 'same-origin' });
+  } catch {}
   location.href = '/pages/login.html';
 }
 
-function renderAuthNav() {
+async function renderAuthNav() {
   const container = document.querySelector('[data-auth-nav]');
   if (!container) return;
 
-  const user = getStoredUser();
-  if (getToken()) {
+  const user = await checkAuth();
+  if (user) {
     container.innerHTML = `
-      <a class="nav-link" href="/pages/profile.html">${user?.username || '个人中心'}</a>
+      <a class="nav-link" href="/pages/profile.html">${user.username || '个人中心'}</a>
       <button class="btn btn-sm btn-outline-success" type="button" data-logout>退出登录</button>
     `;
   } else {

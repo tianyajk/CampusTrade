@@ -6,7 +6,6 @@
 /Users/wangjane/Desktop/CampusTrade/bin/Debug/net8.0/CampusTrade.dll
 /Users/wangjane/Desktop/CampusTrade/bin/Debug/net8.0/CampusTrade.pdb
 /Users/wangjane/Desktop/CampusTrade/bin/Debug/net8.0/Humanizer.dll
-/Users/wangjane/Desktop/CampusTrade/bin/Debug/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
 /Users/wangjane/Desktop/CampusTrade/bin/Debug/net8.0/Microsoft.Bcl.AsyncInterfaces.dll
 /Users/wangjane/Desktop/CampusTrade/bin/Debug/net8.0/Microsoft.CodeAnalysis.dll
 /Users/wangjane/Desktop/CampusTrade/bin/Debug/net8.0/Microsoft.CodeAnalysis.CSharp.dll
@@ -23,12 +22,6 @@
 /Users/wangjane/Desktop/CampusTrade/bin/Debug/net8.0/Microsoft.Extensions.Logging.dll
 /Users/wangjane/Desktop/CampusTrade/bin/Debug/net8.0/Microsoft.Extensions.Logging.Abstractions.dll
 /Users/wangjane/Desktop/CampusTrade/bin/Debug/net8.0/Microsoft.Extensions.Options.dll
-/Users/wangjane/Desktop/CampusTrade/bin/Debug/net8.0/Microsoft.IdentityModel.Abstractions.dll
-/Users/wangjane/Desktop/CampusTrade/bin/Debug/net8.0/Microsoft.IdentityModel.JsonWebTokens.dll
-/Users/wangjane/Desktop/CampusTrade/bin/Debug/net8.0/Microsoft.IdentityModel.Logging.dll
-/Users/wangjane/Desktop/CampusTrade/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.dll
-/Users/wangjane/Desktop/CampusTrade/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
-/Users/wangjane/Desktop/CampusTrade/bin/Debug/net8.0/Microsoft.IdentityModel.Tokens.dll
 /Users/wangjane/Desktop/CampusTrade/bin/Debug/net8.0/Microsoft.OpenApi.dll
 /Users/wangjane/Desktop/CampusTrade/bin/Debug/net8.0/Mono.TextTemplating.dll
 /Users/wangjane/Desktop/CampusTrade/bin/Debug/net8.0/MySqlConnector.dll
@@ -42,7 +35,6 @@
 /Users/wangjane/Desktop/CampusTrade/bin/Debug/net8.0/System.Composition.Hosting.dll
 /Users/wangjane/Desktop/CampusTrade/bin/Debug/net8.0/System.Composition.Runtime.dll
 /Users/wangjane/Desktop/CampusTrade/bin/Debug/net8.0/System.Composition.TypedParts.dll
-/Users/wangjane/Desktop/CampusTrade/bin/Debug/net8.0/System.IdentityModel.Tokens.Jwt.dll
 /Users/wangjane/Desktop/CampusTrade/bin/Debug/net8.0/cs/Microsoft.CodeAnalysis.resources.dll
 /Users/wangjane/Desktop/CampusTrade/bin/Debug/net8.0/de/Microsoft.CodeAnalysis.resources.dll
 /Users/wangjane/Desktop/CampusTrade/bin/Debug/net8.0/es/Microsoft.CodeAnalysis.resources.dll
@@ -116,3 +108,4 @@
 /Users/wangjane/Desktop/CampusTrade/obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.CampusTrade.props
 /Users/wangjane/Desktop/CampusTrade/obj/Debug/net8.0/staticwebassets.pack.json
 /Users/wangjane/Desktop/CampusTrade/obj/Debug/net8.0/CampusTrade.csproj.CopyComplete
+/Users/wangjane/Desktop/CampusTrade/obj/Debug/net8.0/CampusTrade.sourcelink.json

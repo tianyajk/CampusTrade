@@ -72,7 +72,7 @@ CampusTrade/
 - Models/ 同时放实体类和 DTO，不单独拆目录
 - 前端纯静态文件，通过 fetch 调用后端 API
 - UseStaticFiles 直接指向 frontend/ 目录，不需要 wwwroot
-- 登录后 JWT Token 存在 localStorage，每次请求通过 Authorization 头携带
+- 登录后服务器写入 Cookie（使用 ASP.NET Core 内置的 Cookie 认证），浏览器自动管理
 - 不需要 Node.js 构建工具，前端直接写原生 HTML/CSS/JS
 - 开发时 API 和前端同域，无需处理跨域
 
@@ -83,14 +83,15 @@ CampusTrade/
 实现：
 - 用户注册
 - 用户登录
-- JWT认证
+- Cookie 认证（登录后写入 Cookie，浏览器自动携带）
 - 修改个人信息
 - 上传头像
 - 查看个人主页
 
 API 端点设计参考：
 POST   /api/auth/register      # 注册
-POST   /api/auth/login         # 登录，返回 JWT Token
+POST   /api/auth/login         # 登录，服务器写入 Cookie（浏览器自动管理）
+POST   /api/auth/logout        # 退出登录，清除 Cookie
 GET    /api/user/profile       # 获取当前用户信息
 PUT    /api/user/profile       # 修改个人信息
 POST   /api/user/avatar        # 上传头像
@@ -249,14 +250,14 @@ Order 实体字段：
 1. API 封装：
 在 js/api.js 中封装 fetch 请求，统一处理：
 - 基础 URL 配置
-- 自动携带 JWT Token（从 localStorage 读取）
+- 请求携带 Cookie（credentials: 'same-origin'）
 - 统一错误处理（401 跳转登录页）
 - JSON 解析
 
 2. 认证状态管理：
-- 登录成功后 Token 存入 localStorage
-- 每个页面加载时检查 localStorage 有无 Token，决定显示"登录"还是"个人中心"
-- 退出登录时清除 localStorage
+- 登录成功时，服务器自动写入 Cookie（浏览器管理，前端无需手动存储）
+- 每个页面加载时调用 GET /api/user/profile 接口，判断是否已登录
+- 退出登录时调用 POST /api/auth/logout 清除服务端 Cookie
 
 3. 页面渲染：
 - 页面加载时通过 fetch 调用 API 获取数据
@@ -293,7 +294,7 @@ Order 实体字段：
 
 第一步：创建项目结构和数据库设计
   - 使用 dotnet new webapi 创建项目
-  - 安装 NuGet 包（EF Core MySQL、JWT）
+  - 安装 NuGet 包（EF Core MySQL、Swagger）
   - 创建 backend/ 下的所有目录
   - 创建 frontend/ 下的所有目录
   - 设计 Entity 类（User, Product, Order, Message, Favorite）
@@ -302,9 +303,9 @@ Order 实体字段：
   - 执行数据库迁移
 
 第二步：完成用户模块
-  - AuthController（注册/登录 API + JWT Token 生成）
+  - AuthController（注册/登录/退出 API + Cookie 登录写入）
   - UserController（个人信息、头像上传 API）
-  - JWT 认证中间件配置
+  - Cookie 认证中间件配置
   - 前端登录页 + 注册页
 
 第三步：完成商品模块 + 搜索模块

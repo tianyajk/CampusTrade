@@ -16,13 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     try {
-      const result = await requestJson('/api/auth/login', {
+      await requestJson('/api/auth/login', {
         method: 'POST',
         body: JSON.stringify({ account, password })
       });
 
-      setToken(result.data.token);
-      setStoredUser(result.data.user);
       showMessage(message, '登录成功，正在进入个人中心...', true);
       setTimeout(() => {
         location.href = '/pages/profile.html';
