@@ -45,7 +45,13 @@
       "Bash(dotnet ef *)",
       "Bash(ASPNETCORE_ENVIRONMENT=Development ASPNETCORE_URLS=http://127.0.0.1:5109 dotnet run --no-build)",
       "Bash(curl -i -s -X POST http://127.0.0.1:5109/api/auth/register -H 'Content-Type: application/json' --data '{\"username\":\"verify5109\",\"email\":\"verify5109@example.com\",\"password\":\"123456\",\"phone\":null}')",
-      "Bash(ASPNETCORE_ENVIRONMENT=Development ASPNETCORE_URLS=http://127.0.0.1:5000 dotnet run --no-build)"
+      "Bash(ASPNETCORE_ENVIRONMENT=Development ASPNETCORE_URLS=http://127.0.0.1:5000 dotnet run --no-build)",
+      "Bash(env 'ConnectionStrings__DefaultConnection=Server=localhost;Port=3306;Database=campus_trade;User=root;Password=Wjy23603@;' dotnet run --urls 'http://localhost:5010')",
+      "Bash(curl -s -i -X POST 'http://localhost:5010/api/auth/login' -H 'Content-Type: application/json' --data '{\"account\":\"__claude_nonexistent__\",\"password\":\"test123\"}')",
+      "Bash(curl -s -o /dev/null -w '%{http_code}' http://localhost:5010/)",
+      "Bash(echo 'test image content')",
+      "Bash(curl -s -c /tmp/campus-cookies.txt -X POST 'http://localhost:5010/api/auth/login' -H 'Content-Type: application/json' -d '{\"account\":\"test\",\"password\":\"test123\"}')",
+      "Bash(curl -s -b /tmp/campus-cookies.txt -X POST 'http://localhost:5010/api/product/upload-image' -F 'file=@/tmp/test-product-image.png')"
     ]
   }
 }
